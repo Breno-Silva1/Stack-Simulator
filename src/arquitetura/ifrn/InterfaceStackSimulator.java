@@ -19,6 +19,7 @@ import javax.swing.JButton;
 import java.awt.Choice;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -36,6 +37,7 @@ public class InterfaceStackSimulator extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField valorReg;
+	int[] registradoresValores = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; 
 
 	/**
 	 * Launch the application.
@@ -57,6 +59,7 @@ public class InterfaceStackSimulator extends JFrame {
 	 * Create the frame.
 	 */
 	public InterfaceStackSimulator() {
+		setResizable(false);
 		setTitle("Stack Simulator");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceStackSimulator.class.getResource("/com/sun/java/swing/plaf/windows/icons/Computer.gif")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,55 +76,59 @@ public class InterfaceStackSimulator extends JFrame {
 		contentPane.add(title);
 		
 		JLabel lblValorDosRegistradores = new JLabel("Valor dos registradores:");
-		lblValorDosRegistradores.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblValorDosRegistradores.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblValorDosRegistradores.setBounds(40, 134, 181, 20);
 		contentPane.add(lblValorDosRegistradores);
 		
 		valorReg = new JTextField();
 		valorReg.setFont(new Font("Tahoma", Font.BOLD, 12));
-		valorReg.setBounds(41, 174, 86, 29);
+		valorReg.setBounds(41, 174, 132, 29);
 		contentPane.add(valorReg);
 		valorReg.setColumns(10);
 		
 		JLabel lblInstrucoes = new JLabel("Instru\u00E7\u00F5es:");
-		lblInstrucoes.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblInstrucoes.setBounds(40, 245, 181, 20);
+		lblInstrucoes.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblInstrucoes.setBounds(40, 330, 181, 20);
 		contentPane.add(lblInstrucoes);
 		
 		JTextArea campoInstrucoes = new JTextArea();
 		campoInstrucoes.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		campoInstrucoes.setBounds(40, 276, 287, 148);
+		campoInstrucoes.setBounds(40, 361, 332, 79);
 		contentPane.add(campoInstrucoes);
 		
 		JButton btnExecutar = new JButton("Executar");
 		btnExecutar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnExecutar.setBackground(SystemColor.controlHighlight);
-		btnExecutar.setBounds(233, 438, 94, 29);
+		btnExecutar.setBounds(278, 454, 94, 29);
 		contentPane.add(btnExecutar);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(SystemColor.scrollbar);
-		panel.setBounds(40, 276, 290, 150);
+		panel.setBounds(40, 363, 336, 79);
 		contentPane.add(panel);
 		
 		JLabel lblPilha = new JLabel("Pilha");
-		lblPilha.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblPilha.setBounds(636, 135, 49, 20);
+		lblPilha.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblPilha.setBounds(658, 134, 44, 20);
 		contentPane.add(lblPilha);
 		
 		JPanel a = new JPanel();
 		a.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
-		a.setBackground(new Color(211, 211, 211));
-		a.setBounds(522, 176, 270, 30);
+		a.setBackground(SystemColor.controlHighlight);
+		a.setBounds(560, 176, 232, 30);
 		contentPane.add(a);
 		
 		JLabel lblA = new JLabel("A");
 		a.add(lblA);
 		
+		//SET VISIBLE
+		lblA.setVisible(false);
+		a.setVisible(false);
+		
 		JPanel b = new JPanel();
 		b.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
 		b.setBackground(SystemColor.controlHighlight);
-		b.setBounds(522, 205, 270, 30);
+		b.setBounds(560, 205, 232, 30);
 		contentPane.add(b);
 		
 		JLabel lblB = new JLabel("B");
@@ -129,8 +136,8 @@ public class InterfaceStackSimulator extends JFrame {
 		
 		JPanel c = new JPanel();
 		c.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
-		c.setBackground(new Color(211, 211, 211));
-		c.setBounds(522, 234, 270, 30);
+		c.setBackground(SystemColor.controlHighlight);
+		c.setBounds(560, 234, 232, 30);
 		contentPane.add(c);
 		
 		JLabel lblC = new JLabel("C");
@@ -139,7 +146,7 @@ public class InterfaceStackSimulator extends JFrame {
 		JPanel d = new JPanel();
 		d.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
 		d.setBackground(SystemColor.controlHighlight);
-		d.setBounds(522, 263, 270, 30);
+		d.setBounds(560, 263, 232, 30);
 		contentPane.add(d);
 		
 		JLabel lblD = new JLabel("D");
@@ -147,8 +154,8 @@ public class InterfaceStackSimulator extends JFrame {
 		
 		JPanel e = new JPanel();
 		e.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
-		e.setBackground(new Color(211, 211, 211));
-		e.setBounds(522, 292, 270, 30);
+		e.setBackground(SystemColor.controlHighlight);
+		e.setBounds(560, 292, 232, 30);
 		contentPane.add(e);
 		
 		JLabel lblE = new JLabel("E");
@@ -157,7 +164,7 @@ public class InterfaceStackSimulator extends JFrame {
 		JPanel f = new JPanel();
 		f.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
 		f.setBackground(SystemColor.controlHighlight);
-		f.setBounds(522, 321, 270, 30);
+		f.setBounds(560, 321, 232, 30);
 		contentPane.add(f);
 		
 		JLabel lblF = new JLabel("F");
@@ -165,8 +172,8 @@ public class InterfaceStackSimulator extends JFrame {
 		
 		JPanel g = new JPanel();
 		g.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
-		g.setBackground(new Color(211, 211, 211));
-		g.setBounds(522, 350, 270, 30);
+		g.setBackground(SystemColor.controlHighlight);
+		g.setBounds(560, 350, 232, 30);
 		contentPane.add(g);
 		
 		JLabel lblG = new JLabel("G");
@@ -175,7 +182,7 @@ public class InterfaceStackSimulator extends JFrame {
 		JPanel h = new JPanel();
 		h.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
 		h.setBackground(SystemColor.controlHighlight);
-		h.setBounds(522, 379, 270, 30);
+		h.setBounds(560, 379, 232, 30);
 		contentPane.add(h);
 		
 		JLabel lblH = new JLabel("H");
@@ -183,8 +190,8 @@ public class InterfaceStackSimulator extends JFrame {
 		
 		JPanel i = new JPanel();
 		i.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
-		i.setBackground(new Color(211, 211, 211));
-		i.setBounds(522, 408, 270, 30);
+		i.setBackground(SystemColor.controlHighlight);
+		i.setBounds(560, 408, 232, 30);
 		contentPane.add(i);
 		
 		JLabel lblI = new JLabel("I");
@@ -193,7 +200,7 @@ public class InterfaceStackSimulator extends JFrame {
 		JPanel j = new JPanel();
 		j.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
 		j.setBackground(SystemColor.controlHighlight);
-		j.setBounds(522, 437, 270, 30);
+		j.setBounds(560, 437, 232, 30);
 		contentPane.add(j);
 		
 		JLabel lblJ = new JLabel("J");
@@ -202,7 +209,7 @@ public class InterfaceStackSimulator extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
 		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(411, 190, 71, 30);
+		panel_1.setBounds(453, 189, 71, 30);
 		contentPane.add(panel_1);
 		
 		JLabel pc = new JLabel("");
@@ -211,30 +218,30 @@ public class InterfaceStackSimulator extends JFrame {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
 		panel_2.setBackground(Color.WHITE);
-		panel_2.setBounds(411, 305, 71, 30);
+		panel_2.setBounds(453, 304, 71, 30);
 		contentPane.add(panel_2);
 		
 		JLabel ir = new JLabel("");
 		panel_2.add(ir);
 		
 		JLabel lblNewLabel = new JLabel("PC");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel.setBounds(411, 165, 29, 14);
+		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblNewLabel.setBounds(453, 164, 29, 14);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblIr = new JLabel("IR");
-		lblIr.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblIr.setBounds(411, 279, 29, 14);
+		lblIr.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblIr.setBounds(453, 278, 29, 14);
 		contentPane.add(lblIr);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(Color.LIGHT_GRAY);
-		panel_3.setBounds(0, 0, 834, 79);
+		panel_3.setBounds(0, 0, 844, 79);
 		contentPane.add(panel_3);
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBackground(Color.LIGHT_GRAY);
-		panel_4.setBounds(0, 524, 834, 38);
+		panel_4.setBounds(0, 534, 844, 38);
 		contentPane.add(panel_4);
 		
 		JLabel copyrigth = new JLabel("\u00A9 Desenvolvido por Adlem, Breno e Victor");
@@ -244,44 +251,138 @@ public class InterfaceStackSimulator extends JFrame {
 		registradores.setBackground(SystemColor.menu);
 		registradores.setModel(new DefaultComboBoxModel(new String[] {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"}));
 		registradores.setToolTipText("REGS");
-		registradores.setBounds(136, 174, 85, 29);
+		registradores.setBounds(187, 175, 85, 29);
 		contentPane.add(registradores);
+		
+		JLabel regA = new JLabel("A = " + registradoresValores[0]);
+		regA.setForeground(new Color(105, 105, 105));
+		regA.setFont(new Font("Arial", Font.BOLD, 18));
+		regA.setBounds(47, 243, 71, 20);
+		contentPane.add(regA);
+		
+		JLabel regB = new JLabel("B = " + registradoresValores[1]);
+		regB.setForeground(new Color(105, 105, 105));
+		regB.setFont(new Font("Arial", Font.BOLD, 18));
+		regB.setBounds(47, 282, 71, 20);
+		contentPane.add(regB);
+		
+		JLabel regC = new JLabel("C = " + registradoresValores[2]);
+		regC.setForeground(Color.GRAY);
+		regC.setFont(new Font("Arial", Font.BOLD, 18));
+		regC.setBounds(115, 243, 71, 20);
+		contentPane.add(regC);
+		
+		JLabel regE = new JLabel("E = " + registradoresValores[3]);
+		regE.setForeground(new Color(105, 105, 105));
+		regE.setFont(new Font("Arial", Font.BOLD, 18));
+		regE.setBounds(189, 243, 71, 20);
+		contentPane.add(regE);
+		
+		JLabel regG = new JLabel("G = " + registradoresValores[4]);
+		regG.setForeground(Color.GRAY);
+		regG.setFont(new Font("Arial", Font.BOLD, 18));
+		regG.setBounds(257, 243, 71, 20);
+		contentPane.add(regG);
+		
+		JLabel regI = new JLabel("I = " + registradoresValores[5]);
+		regI.setForeground(new Color(105, 105, 105));
+		regI.setFont(new Font("Arial", Font.BOLD, 18));
+		regI.setBounds(324, 243, 71, 20);
+		contentPane.add(regI);
+		
+		JLabel regD = new JLabel("D = " + registradoresValores[6]);
+		regD.setForeground(Color.GRAY);
+		regD.setFont(new Font("Arial", Font.BOLD, 18));
+		regD.setBounds(115, 282, 71, 20);
+		contentPane.add(regD);
+		
+		JLabel regF = new JLabel("F = " + registradoresValores[7]);
+		regF.setForeground(new Color(105, 105, 105));
+		regF.setFont(new Font("Arial", Font.BOLD, 18));
+		regF.setBounds(189, 282, 71, 20);
+		contentPane.add(regF);
+		
+		JLabel regH = new JLabel("H = " + registradoresValores[8]);
+		regH.setForeground(Color.GRAY);
+		regH.setFont(new Font("Arial", Font.BOLD, 18));
+		regH.setBounds(257, 282, 71, 20);
+		contentPane.add(regH);
+		
+		JLabel regJ = new JLabel("J = " + registradoresValores[9]);
+		regJ.setForeground(new Color(105, 105, 105));
+		regJ.setFont(new Font("Arial", Font.BOLD, 18));
+		regJ.setBounds(324, 282, 71, 20);
+		contentPane.add(regJ);
 		
 		JButton btnAdicionar = new JButton("Adicionar");
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				int valorRegInt = 0;
+				try {
+					valorRegInt = Integer.parseInt(valorReg.getText());
+				} catch (NumberFormatException n) {
+					JOptionPane.showMessageDialog(InterfaceStackSimulator.this, "Passe um número válido!");
+				}
 				
-				if(registradores.getSelectedItem().equals("A"))
-					lblA.setText(valorReg.getText());
-				else if(registradores.getSelectedItem().equals("B"))
-					lblB.setText(valorReg.getText());
-				else if(registradores.getSelectedItem().equals("C"))
-					lblC.setText(valorReg.getText());
-				else if(registradores.getSelectedItem().equals("D"))
-					lblD.setText(valorReg.getText());
-				else if(registradores.getSelectedItem().equals("E"))
-					lblE.setText(valorReg.getText());
-				else if(registradores.getSelectedItem().equals("F"))
-					lblF.setText(valorReg.getText());
-				else if(registradores.getSelectedItem().equals("G"))
-					lblG.setText(valorReg.getText());
-				else if(registradores.getSelectedItem().equals("H"))
-					lblH.setText(valorReg.getText());
-				else if(registradores.getSelectedItem().equals("I"))
-					lblI.setText(valorReg.getText());
-				else if(registradores.getSelectedItem().equals("J"))
-					lblJ.setText(valorReg.getText());
+				if(registradores.getSelectedItem().equals("A")) {
+					registradoresValores[0] = valorRegInt; 
+					regA.setText("A = " + registradoresValores[0]);
+				} else if(registradores.getSelectedItem().equals("B")){
+					registradoresValores[1] = valorRegInt;
+					regB.setText("B = " + registradoresValores[1]);
+				} else if(registradores.getSelectedItem().equals("C")){
+					registradoresValores[2] = valorRegInt;
+					regC.setText("C = " + registradoresValores[2]);
+				} else if(registradores.getSelectedItem().equals("D")){
+					registradoresValores[3] = valorRegInt;
+					regD.setText("D = " + registradoresValores[3]);
+				} else if(registradores.getSelectedItem().equals("E")){
+					registradoresValores[4] = valorRegInt;
+					regE.setText("E = " + registradoresValores[4]);
+				} else if(registradores.getSelectedItem().equals("F")){
+					registradoresValores[5] = valorRegInt;
+					regF.setText("F = " + registradoresValores[5]);
+				} else if(registradores.getSelectedItem().equals("G")){
+					registradoresValores[6] = valorRegInt;
+					regG.setText("G = " + registradoresValores[6]);
+				} else if(registradores.getSelectedItem().equals("H")){
+					registradoresValores[7] = valorRegInt;
+					regH.setText("H = " + registradoresValores[7]);
+				} else if(registradores.getSelectedItem().equals("I")){
+					registradoresValores[8] = valorRegInt;
+					regI.setText("I = " + registradoresValores[8]);
+				} else if(registradores.getSelectedItem().equals("J")){
+					registradoresValores[9] = valorRegInt;
+					regJ.setText("J = " + registradoresValores[9]);
+				} 
 			}
 		});
 		
 		btnAdicionar.setBackground(SystemColor.controlHighlight);
 		btnAdicionar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnAdicionar.setBounds(231, 174, 94, 29);
+		btnAdicionar.setBounds(282, 174, 94, 29);
 		contentPane.add(btnAdicionar);
 		
 		JSeparator separator = new JSeparator();
 		separator.setOrientation(SwingConstants.VERTICAL);
-		separator.setBounds(377, 134, 29, 362);
+		separator.setBounds(414, 135, 29, 341);
 		contentPane.add(separator);
+		
+		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(new Color(211, 211, 211));
+		panel_5.setBounds(40, 234, 342, 79);
+		contentPane.add(panel_5);
+		
+		JPanel panel_6 = new JPanel();
+		panel_6.setBackground(new Color(128, 128, 128));
+		panel_6.setBounds(560, 174, 232, 292);
+		contentPane.add(panel_6);
+		
+		JLabel lblRegistradores = new JLabel("Registradores");
+		lblRegistradores.setForeground(SystemColor.windowBorder);
+		lblRegistradores.setFont(new Font("Dialog", Font.PLAIN, 10));
+		lblRegistradores.setBounds(40, 214, 181, 20);
+		contentPane.add(lblRegistradores);
+		
 	}
 }

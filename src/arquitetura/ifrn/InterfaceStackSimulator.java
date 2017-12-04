@@ -83,25 +83,6 @@ public class InterfaceStackSimulator extends JFrame {
 		contentPane.add(valorReg);
 		valorReg.setColumns(10);
 		
-		JComboBox registradores = new JComboBox();
-		registradores.setBackground(SystemColor.menu);
-		registradores.setModel(new DefaultComboBoxModel(new String[] {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"}));
-		registradores.setToolTipText("REGS");
-		registradores.setBounds(136, 174, 85, 29);
-		contentPane.add(registradores);
-		
-		JButton btnAdicionar = new JButton("Adicionar");
-		btnAdicionar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				int valor = Integer.parseInt(valorReg.getText());
-				
-			}
-		});
-		btnAdicionar.setBackground(SystemColor.controlHighlight);
-		btnAdicionar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnAdicionar.setBounds(231, 174, 94, 29);
-		contentPane.add(btnAdicionar);
-		
 		JLabel lblInstrucoes = new JLabel("Instru\u00E7\u00F5es:");
 		lblInstrucoes.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblInstrucoes.setBounds(40, 245, 181, 20);
@@ -246,11 +227,6 @@ public class InterfaceStackSimulator extends JFrame {
 		lblIr.setBounds(411, 279, 29, 14);
 		contentPane.add(lblIr);
 		
-		JSeparator separator = new JSeparator();
-		separator.setOrientation(SwingConstants.VERTICAL);
-		separator.setBounds(377, 134, 29, 362);
-		contentPane.add(separator);
-		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(Color.LIGHT_GRAY);
 		panel_3.setBounds(0, 0, 834, 79);
@@ -263,5 +239,49 @@ public class InterfaceStackSimulator extends JFrame {
 		
 		JLabel copyrigth = new JLabel("\u00A9 Desenvolvido por Adlem, Breno e Victor");
 		panel_4.add(copyrigth);
+		
+		JComboBox registradores = new JComboBox();
+		registradores.setBackground(SystemColor.menu);
+		registradores.setModel(new DefaultComboBoxModel(new String[] {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"}));
+		registradores.setToolTipText("REGS");
+		registradores.setBounds(136, 174, 85, 29);
+		contentPane.add(registradores);
+		
+		JButton btnAdicionar = new JButton("Adicionar");
+		btnAdicionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				if(registradores.getSelectedItem().equals("A"))
+					lblA.setText(valorReg.getText());
+				else if(registradores.getSelectedItem().equals("B"))
+					lblB.setText(valorReg.getText());
+				else if(registradores.getSelectedItem().equals("C"))
+					lblC.setText(valorReg.getText());
+				else if(registradores.getSelectedItem().equals("D"))
+					lblD.setText(valorReg.getText());
+				else if(registradores.getSelectedItem().equals("E"))
+					lblE.setText(valorReg.getText());
+				else if(registradores.getSelectedItem().equals("F"))
+					lblF.setText(valorReg.getText());
+				else if(registradores.getSelectedItem().equals("G"))
+					lblG.setText(valorReg.getText());
+				else if(registradores.getSelectedItem().equals("H"))
+					lblH.setText(valorReg.getText());
+				else if(registradores.getSelectedItem().equals("I"))
+					lblI.setText(valorReg.getText());
+				else if(registradores.getSelectedItem().equals("J"))
+					lblJ.setText(valorReg.getText());
+			}
+		});
+		
+		btnAdicionar.setBackground(SystemColor.controlHighlight);
+		btnAdicionar.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnAdicionar.setBounds(231, 174, 94, 29);
+		contentPane.add(btnAdicionar);
+		
+		JSeparator separator = new JSeparator();
+		separator.setOrientation(SwingConstants.VERTICAL);
+		separator.setBounds(377, 134, 29, 362);
+		contentPane.add(separator);
 	}
 }

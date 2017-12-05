@@ -9,18 +9,11 @@ import java.awt.Toolkit;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
-import java.awt.Component;
-import javax.swing.Box;
 import java.awt.Color;
 import javax.swing.JSeparator;
-import javax.swing.JFormattedTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
-import java.awt.Choice;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.SystemColor;
@@ -29,7 +22,7 @@ import javax.swing.border.BevelBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Main extends JFrame {
+public class MainInterface extends JFrame {
 
 	/**
 	 * 
@@ -37,7 +30,7 @@ public class Main extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField valorReg;
-	int[] registradoresValores = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; 
+	Integer[] registradoresValores = new Integer[11]; 
 
 	/**
 	 * Launch the application.
@@ -46,7 +39,7 @@ public class Main extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InterfaceStackSimulator frame = new InterfaceStackSimulator();
+					MainInterface frame = new MainInterface();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -58,7 +51,7 @@ public class Main extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Main() {
+	public MainInterface() {
 		setResizable(false);
 		setTitle("Stack Simulator");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceStackSimulator.class.getResource("/com/sun/java/swing/plaf/windows/icons/Computer.gif")));
@@ -95,12 +88,6 @@ public class Main extends JFrame {
 		campoInstrucoes.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		campoInstrucoes.setBounds(40, 277, 332, 163);
 		contentPane.add(campoInstrucoes);
-		
-		JButton btnExecutar = new JButton("Executar");
-		btnExecutar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnExecutar.setBackground(SystemColor.controlHighlight);
-		btnExecutar.setBounds(278, 454, 94, 29);
-		contentPane.add(btnExecutar);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(SystemColor.scrollbar);
@@ -256,41 +243,43 @@ public class Main extends JFrame {
 				int valorRegInt = 0;
 				try {
 					valorRegInt = Integer.parseInt(valorReg.getText());
+					
+					if(registradores.getSelectedItem().equals("A")) {
+						registradoresValores[0] = valorRegInt; 
+						lblA.setText(valorReg.getText());
+					} else if(registradores.getSelectedItem().equals("B")){
+						registradoresValores[1] = valorRegInt;
+						lblB.setText(valorReg.getText());
+					} else if(registradores.getSelectedItem().equals("C")){
+						registradoresValores[2] = valorRegInt;
+						lblC.setText(valorReg.getText());
+					} else if(registradores.getSelectedItem().equals("D")){
+						registradoresValores[3] = valorRegInt;
+						lblD.setText(valorReg.getText());
+					} else if(registradores.getSelectedItem().equals("E")){
+						registradoresValores[4] = valorRegInt;
+						lblE.setText(valorReg.getText());
+					} else if(registradores.getSelectedItem().equals("F")){
+						registradoresValores[5] = valorRegInt;
+						lblF.setText(valorReg.getText());
+					} else if(registradores.getSelectedItem().equals("G")){
+						registradoresValores[6] = valorRegInt;
+						lblG.setText(valorReg.getText());
+					} else if(registradores.getSelectedItem().equals("H")){
+						registradoresValores[7] = valorRegInt;
+						lblH.setText(valorReg.getText());
+					} else if(registradores.getSelectedItem().equals("I")){
+						registradoresValores[8] = valorRegInt;
+						lblI.setText(valorReg.getText());
+					} else if(registradores.getSelectedItem().equals("J")){
+						registradoresValores[9] = valorRegInt;
+						lblJ.setText(valorReg.getText());
+					} 
+					registradoresValores[10] = null;
+					
 				} catch (NumberFormatException n) {
-					JOptionPane.showMessageDialog(Main.this, "Passe um número válido!");
+					JOptionPane.showMessageDialog(MainInterface.this, "Passe um número válido!");
 				}
-				
-				if(registradores.getSelectedItem().equals("A")) {
-					registradoresValores[0] = valorRegInt; 
-					lblA.setText(valorReg.getText());
-				} else if(registradores.getSelectedItem().equals("B")){
-					registradoresValores[1] = valorRegInt;
-					lblB.setText(valorReg.getText());
-				} else if(registradores.getSelectedItem().equals("C")){
-					registradoresValores[2] = valorRegInt;
-					lblC.setText(valorReg.getText());
-				} else if(registradores.getSelectedItem().equals("D")){
-					registradoresValores[3] = valorRegInt;
-					lblD.setText(valorReg.getText());
-				} else if(registradores.getSelectedItem().equals("E")){
-					registradoresValores[4] = valorRegInt;
-					lblE.setText(valorReg.getText());
-				} else if(registradores.getSelectedItem().equals("F")){
-					registradoresValores[5] = valorRegInt;
-					lblF.setText(valorReg.getText());
-				} else if(registradores.getSelectedItem().equals("G")){
-					registradoresValores[6] = valorRegInt;
-					lblG.setText(valorReg.getText());
-				} else if(registradores.getSelectedItem().equals("H")){
-					registradoresValores[7] = valorRegInt;
-					lblH.setText(valorReg.getText());
-				} else if(registradores.getSelectedItem().equals("I")){
-					registradoresValores[8] = valorRegInt;
-					lblI.setText(valorReg.getText());
-				} else if(registradores.getSelectedItem().equals("J")){
-					registradoresValores[9] = valorRegInt;
-					lblJ.setText(valorReg.getText());
-				} 
 			}
 		});
 		
@@ -298,6 +287,58 @@ public class Main extends JFrame {
 		btnAdicionar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnAdicionar.setBounds(282, 174, 94, 29);
 		contentPane.add(btnAdicionar);
+		
+		JButton btnExecutar = new JButton("Executar");
+		btnExecutar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String instrucao = null;
+				
+				if (!campoInstrucoes.getText().equals("")) {
+					if (verificarRegistradores(registradoresValores)) {
+						instrucao = campoInstrucoes.getText().trim().toUpperCase();
+						
+						//ARITIMÉTICAS
+						if (instrucao.equals("ADD")) {
+							registradoresValores[0] += registradoresValores[1];
+							System.out.println(registradoresValores[0]);
+							for (int k = 1; k < registradoresValores.length-1; k++) {
+								if (registradoresValores[k] != null) {
+									registradoresValores[k] = registradoresValores[k+1];
+									System.out.println(registradoresValores[k]);
+								}
+							}
+						} else if(instrucao.equals("SUBTRACT")) {
+							
+						} else if(instrucao.equals("MULTIPLY")) {
+							
+						} else if(instrucao.equals("DIVIDE")) {
+							
+						} 
+						
+						//LÓGICAS
+						else if(instrucao.equals("AND")) {
+							
+						} else if(instrucao.equals("OR")) {
+							
+						} else if(instrucao.equals("NOT")) {
+							
+						} else if(instrucao.equals("XOR")) {
+							
+						}
+						
+					} else {
+						JOptionPane.showMessageDialog(MainInterface.this, "Insira todos os valores dos registradores!");
+					}
+				} else {
+					JOptionPane.showMessageDialog(MainInterface.this, "Insira uma instrução válida!");
+				}
+				
+			}
+		});
+		btnExecutar.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnExecutar.setBackground(SystemColor.controlHighlight);
+		btnExecutar.setBounds(278, 454, 94, 29);
+		contentPane.add(btnExecutar);
 		
 		JSeparator separator = new JSeparator();
 		separator.setOrientation(SwingConstants.VERTICAL);
@@ -310,4 +351,17 @@ public class Main extends JFrame {
 		contentPane.add(panel_6);
 		
 	}
+	public boolean verificarRegistradores(Integer[] regs){
+		boolean retorno = false;
+		
+		if(regs != null){
+			for (int i = 0; i < regs.length; i++) {
+				if (regs[i] != null) {
+					retorno = true;
+				}
+			}
+		}
+		return retorno;
+	}
+	
 }

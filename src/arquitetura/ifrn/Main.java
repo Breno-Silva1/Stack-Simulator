@@ -46,14 +46,30 @@ public class Main {
 		
 		if (instrucao.length() >= 5) {
 			String[] instrucaoCompleta = instrucao.split(" ");
-			String[] regs = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
 			
 			if(instrucaoCompleta[0].equals("POP")) {
-				for (int i = 0; i < regs.length; i++) {
-					if (instrucaoCompleta[1].equals(regs[i])) {
-						registradores[i] = null;
-						break;
-					}
+				if (instrucaoCompleta[1].equals("A")) {
+					
+				} else if (instrucaoCompleta[1].equals("A")) {
+					registradores[0] = null;
+				} else if (instrucaoCompleta[1].equals("B")) {
+					registradores[1] = null;
+				} else if (instrucaoCompleta[1].equals("C")) {
+					registradores[2] = null;
+				} else if (instrucaoCompleta[1].equals("D")) {
+					registradores[3] = null;
+				} else if (instrucaoCompleta[1].equals("E")) {
+					registradores[4] = null;
+				} else if (instrucaoCompleta[1].equals("F")) {
+					registradores[5] = null;
+				} else if (instrucaoCompleta[1].equals("G")) {
+					registradores[6] = null;
+				} else if (instrucaoCompleta[1].equals("H")) {
+					registradores[7] = null;
+				} else if (instrucaoCompleta[1].equals("I")) {
+					registradores[8] = null;
+				} else if (instrucaoCompleta[1].equals("J")) {
+					registradores[9] = null;
 				}
 				imprimirPilha(registradores);
 				

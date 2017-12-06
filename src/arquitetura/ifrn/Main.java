@@ -171,6 +171,7 @@ public class Main {
 		scanner.close();
 	}
 	
+<<<<<<< HEAD
 	static Integer[] operandosPilha(Integer[] pilha){
 		Integer[] operandos = new Integer[2];
 		int index = 0;
@@ -180,6 +181,43 @@ public class Main {
 				break;
 			} else {
 				index = pilha.length;
+=======
+	static void instrucoesTransferencia(Integer[] registradores, String instrucao){
+		
+		if (instrucao.length() >= 5) {
+			String[] instrucaoCompleta = instrucao.split(" ");
+			
+			if(instrucaoCompleta[0].equals("POP")) {
+				if (instrucaoCompleta[1].equals("A")) {
+					
+				} else if (instrucaoCompleta[1].equals("A")) {
+					registradores[0] = null;
+				} else if (instrucaoCompleta[1].equals("B")) {
+					registradores[1] = null;
+				} else if (instrucaoCompleta[1].equals("C")) {
+					registradores[2] = null;
+				} else if (instrucaoCompleta[1].equals("D")) {
+					registradores[3] = null;
+				} else if (instrucaoCompleta[1].equals("E")) {
+					registradores[4] = null;
+				} else if (instrucaoCompleta[1].equals("F")) {
+					registradores[5] = null;
+				} else if (instrucaoCompleta[1].equals("G")) {
+					registradores[6] = null;
+				} else if (instrucaoCompleta[1].equals("H")) {
+					registradores[7] = null;
+				} else if (instrucaoCompleta[1].equals("I")) {
+					registradores[8] = null;
+				} else if (instrucaoCompleta[1].equals("J")) {
+					registradores[9] = null;
+				}
+				imprimirPilha(registradores);
+				
+			} else if(instrucaoCompleta[0].equals("PUSH")) {
+				registradores[0] |= registradores[1];
+				imprimirPilha(registradores);
+				
+>>>>>>> branch 'master' of https://github.com/Breno-Silva1/Stack-Simulator.git
 			}
 		}
 		if ((index - 2) >= 0) {

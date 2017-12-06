@@ -33,6 +33,42 @@ public class Main {
 
 			switch (instrucaoCompleta[0].trim().toUpperCase()) {
 			case "POP":
+				switch (instrucaoCompleta[1].trim().toUpperCase()) {
+				case "A":
+					popPilha(pilha, regs, 0);
+					break;
+				case "B":
+					popPilha(pilha, regs, 1);
+					break;
+				case "C":
+					popPilha(pilha, regs, 2);
+					break;
+				case "D":
+					popPilha(pilha, regs, 3);
+					break;
+				case "E":
+					popPilha(pilha, regs, 4);
+					break;
+				case "F":
+					popPilha(pilha, regs, 5);
+					break;
+				case "G":
+					popPilha(pilha, regs, 6);
+					break;
+				case "H":
+					popPilha(pilha, regs, 7);
+					break;
+				case "I":
+					popPilha(pilha, regs, 8);
+					break;
+				case "J":
+					popPilha(pilha, regs, 9);
+					break;
+
+				default:
+					System.out.println(" >> Registrador não encontrado! << ");
+					break;
+				}
 				break;
 			case "PUSH":
 				switch (instrucaoCompleta[1].trim().toUpperCase()) {
@@ -170,6 +206,14 @@ public class Main {
 		}
 		System.out.println(" >> Programa encerrado! << ");
 		scanner.close();
+	}
+	
+	static void popPilha(Integer[] pilha, Integer[] regs, int indice) {
+		Integer[] operandos = operandosPilha(pilha);
+		int topo = operandos[0];
+		regs[indice] = pilha[topo];
+		pilha[topo] = null;
+		
 	}
 	
 	static Integer[] operandosPilha(Integer[] pilha){

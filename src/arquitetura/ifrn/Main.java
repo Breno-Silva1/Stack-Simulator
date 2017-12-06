@@ -3,7 +3,6 @@ package arquitetura.ifrn;
 import java.util.Scanner;
 
 public class Main {
-	//Teste
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		String[] regsNomes = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };

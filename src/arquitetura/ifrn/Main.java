@@ -77,7 +77,7 @@ public class Main {
 				if(operandos[0] != null){
 					r1 = operandos[0];
 					r2 = operandos[1];
-					pilha[r2] = pilha[r1] + pilha[r2];
+					pilha[r2] = pilha[r2] + pilha[r1];
 					pilha[r1] = null;
 				} else {
 					System.out.println(" >> Não é possível executar esta instrução! << ");
@@ -88,7 +88,7 @@ public class Main {
 				if(operandos[0] != null){
 					r1 = operandos[0];
 					r2 = operandos[1];
-					pilha[r2] = pilha[r1] - pilha[r2];
+					pilha[r2] = pilha[r2] - pilha[r1];
 					pilha[r1] = null;
 				} else {
 					System.out.println(" >> Não é possível executar esta instrução! << ");
@@ -99,7 +99,7 @@ public class Main {
 				if(operandos[0] != null){
 					r1 = operandos[0];
 					r2 = operandos[1];
-					pilha[r2] = pilha[r1] * pilha[r2];
+					pilha[r2] = pilha[r2] * pilha[r1];
 					pilha[r1] = null;
 				} else {
 					System.out.println(" >> Não é possível executar esta instrução! << ");
@@ -110,7 +110,7 @@ public class Main {
 				if(operandos[0] != null){
 					r1 = operandos[0];
 					r2 = operandos[1];
-					pilha[r2] = pilha[r1] / pilha[r2];
+					pilha[r2] = pilha[r2] / pilha[r1];
 					pilha[r1] = null;
 				} else {
 					System.out.println(" >> Não é possível executar esta instrução! << ");
@@ -121,7 +121,7 @@ public class Main {
 				if(operandos[0] != null){
 					r1 = operandos[0];
 					r2 = operandos[1];
-					pilha[r2] = pilha[r1] & pilha[r2];
+					pilha[r2] = pilha[r2] & pilha[r1];
 					pilha[r1] = null;
 				} else {
 					System.out.println(" >> Não é possível executar esta instrução! << ");
@@ -132,7 +132,7 @@ public class Main {
 				if(operandos[0] != null){
 					r1 = operandos[0];
 					r2 = operandos[1];
-					pilha[r2] = pilha[r1] | pilha[r2];
+					pilha[r2] = pilha[r2] | pilha[r1];
 					pilha[r1] = null;
 				} else {
 					System.out.println(" >> Não é possível executar esta instrução! << ");
@@ -143,7 +143,7 @@ public class Main {
 				if(operandos[0] != null){
 					r1 = operandos[0];
 					r2 = operandos[1];
-					pilha[r2] = pilha[r1] ^ pilha[r2];
+					pilha[r2] = pilha[r2] ^ pilha[r1];
 					pilha[r1] = null;
 				} else {
 					System.out.println(" >> Não é possível executar esta instrução! << ");

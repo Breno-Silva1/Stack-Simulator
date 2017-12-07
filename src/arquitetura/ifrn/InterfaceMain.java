@@ -20,10 +20,7 @@ import java.awt.SystemColor;
 import javax.swing.JTextArea;
 import javax.swing.border.BevelBorder;
 import java.awt.event.ActionListener;
-import java.awt.image.ImageObserver;
 import java.awt.event.ActionEvent;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 public class InterfaceMain extends JFrame {
 
@@ -157,257 +154,6 @@ public class InterfaceMain extends JFrame {
 		contentPane.add(pilha10);
 		// FIM LABELS DA PILHA
 		
-		JLabel[] campoPilha = {pilha1, pilha2, pilha3, pilha4, pilha5, pilha6, pilha7, pilha8, pilha9, pilha10};
-		
-		JTextArea campoInstrucoes = new JTextArea();
-		campoInstrucoes.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		campoInstrucoes.setBounds(40, 361, 332, 79);
-		contentPane.add(campoInstrucoes);
-		
-		JButton btnExecutar = new JButton("Executar");
-		btnExecutar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				instrucao = campoInstrucoes.getText();
-				
-				if (instrucao.length() >= 5)
-					instrucaoCompleta = instrucao.split(" ");
-				else
-					instrucaoCompleta[0] = instrucao;
-				
-				switch (instrucaoCompleta[0].trim().toUpperCase()) {
-				case "POP":
-					if(operandos[0] != null) {
-						switch (instrucaoCompleta[1].trim().toUpperCase()) {
-						case "A":
-							popPilha(pilha, regs, 0);
-							break;
-						case "B":
-							popPilha(pilha, regs, 1);
-							break;
-						case "C":
-							popPilha(pilha, regs, 2);
-							break;
-						case "D":
-							popPilha(pilha, regs, 3);
-							break;
-						case "E":
-							popPilha(pilha, regs, 4);
-							break;
-						case "F":
-							popPilha(pilha, regs, 5);
-							break;
-						case "G":
-							popPilha(pilha, regs, 6);
-							break;
-						case "H":
-							popPilha(pilha, regs, 7);
-							break;
-						case "I":
-							popPilha(pilha, regs, 8);
-							break;
-						case "J":
-							popPilha(pilha, regs, 9);
-							break;
-		
-						default:
-							System.out.println(" >> Registrador não encontrado! << ");
-							break;
-						}
-					} else {
-						System.out.println(" >> Não é possível executar esta instrução! << ");
-					}
-					break;
-				case "PUSH":
-					switch (instrucaoCompleta[1].trim().toUpperCase()) {
-					case "A":
-						pushPilha(pilha, regs, 0);
-						break;
-					case "B":
-						pushPilha(pilha, regs, 1);
-						break;
-					case "C":
-						pushPilha(pilha, regs, 2);
-						break;
-					case "D":
-						pushPilha(pilha, regs, 3);
-						break;
-					case "E":
-						pushPilha(pilha, regs, 4);
-						break;
-					case "F":
-						pushPilha(pilha, regs, 5);
-						break;
-					case "G":
-						pushPilha(pilha, regs, 6);
-						break;
-					case "H":
-						pushPilha(pilha, regs, 7);
-						break;
-					case "I":
-						pushPilha(pilha, regs, 8);
-						break;
-					case "J":
-						pushPilha(pilha, regs, 9);
-						break;
-
-					default:
-						System.out.println(" >> Registrador não encontrado! << ");
-						break;
-					}
-					break;
-				case "ADD":
-					operandos = operandosPilha(pilha);
-					if(operandos[0] != null){
-						r1 = operandos[0];
-						r2 = operandos[1];
-						pilha[r2] = pilha[r2] + pilha[r1];
-						pilha[r1] = null;
-					} else {
-						System.out.println(" >> Não é possível executar esta instrução! << ");
-					}
-					break;
-				case "SUB":
-					operandos = operandosPilha(pilha);
-					if(operandos[0] != null){
-						r1 = operandos[0];
-						r2 = operandos[1];
-						pilha[r2] = pilha[r2] - pilha[r1];
-						pilha[r1] = null;
-					} else {
-						System.out.println(" >> Não é possível executar esta instrução! << ");
-					}
-					break;
-				case "MULT":
-					operandos = operandosPilha(pilha);
-					if(operandos[0] != null){
-						r1 = operandos[0];
-						r2 = operandos[1];
-						pilha[r2] = pilha[r2] * pilha[r1];
-						pilha[r1] = null;
-					} else {
-						System.out.println(" >> Não é possível executar esta instrução! << ");
-					}
-					break;
-				case "DIV":
-					operandos = operandosPilha(pilha);
-					if(operandos[0] != null){
-						r1 = operandos[0];
-						r2 = operandos[1];
-						pilha[r2] = pilha[r2] / pilha[r1];
-						pilha[r1] = null;
-					} else {
-						System.out.println(" >> Não é possível executar esta instrução! << ");
-					}
-					break;
-				case "AND":
-					operandos = operandosPilha(pilha);
-					if(operandos[0] != null){
-						r1 = operandos[0];
-						r2 = operandos[1];
-						pilha[r2] = pilha[r2] & pilha[r1];
-						pilha[r1] = null;
-					} else {
-						System.out.println(" >> Não é possível executar esta instrução! << ");
-					}
-					break;
-				case "OR":
-					operandos = operandosPilha(pilha);
-					if(operandos[0] != null){
-						r1 = operandos[0];
-						r2 = operandos[1];
-						pilha[r2] = pilha[r2] | pilha[r1];
-						pilha[r1] = null;
-					} else {
-						System.out.println(" >> Não é possível executar esta instrução! << ");
-					}
-					break;
-				case "XOR":
-					operandos = operandosPilha(pilha);
-					if(operandos[0] != null){
-						r1 = operandos[0];
-						r2 = operandos[1];
-						pilha[r2] = pilha[r2] ^ pilha[r1];
-						pilha[r1] = null;
-					} else {
-						System.out.println(" >> Não é possível executar esta instrução! << ");
-					}
-					break;
-				case "NOT":
-					operandos = operandosPilha(pilha);
-					if(operandos[0] != null){
-						r1 = operandos[0];
-						pilha[r1] = ~pilha[r1];
-					} else {
-						pilha[0] = ~pilha[0];
-					}
-					break;
-					
-				default:
-					System.out.println(" >> Instrução não reconhecida! << ");
-					break;
-				}
-				//String pilhaTexto = imprimirPilha(pilha, campoPilha);
-				//pilha1.setText(pilhaTexto);
-				imprimirPilha(pilha, campoPilha);
-				campoInstrucoes.setText("");
-			}
-		});
-		btnExecutar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnExecutar.setBackground(SystemColor.controlHighlight);
-		btnExecutar.setBounds(278, 454, 94, 29);
-		contentPane.add(btnExecutar);
-		
-		JPanel panel = new JPanel();
-		panel.setBackground(SystemColor.scrollbar);
-		panel.setBounds(40, 363, 336, 79);
-		contentPane.add(panel);
-		
-		JLabel lblPilha = new JLabel("PILHA");
-		lblPilha.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblPilha.setBounds(678, 134, 44, 20);
-		contentPane.add(lblPilha);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
-		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(453, 189, 71, 30);
-		contentPane.add(panel_1);
-		
-		JLabel pc = new JLabel("");
-		panel_1.add(pc);
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
-		panel_2.setBackground(Color.WHITE);
-		panel_2.setBounds(453, 304, 71, 30);
-		contentPane.add(panel_2);
-		
-		JLabel ir = new JLabel("");
-		panel_2.add(ir);
-		
-		JLabel lblNewLabel = new JLabel("PC");
-		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblNewLabel.setBounds(453, 164, 29, 14);
-		contentPane.add(lblNewLabel);
-		
-		JLabel lblIr = new JLabel("IR");
-		lblIr.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblIr.setBounds(453, 278, 29, 14);
-		contentPane.add(lblIr);
-		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(Color.LIGHT_GRAY);
-		panel_3.setBounds(0, 0, 844, 79);
-		contentPane.add(panel_3);
-		
-		JPanel panel_4 = new JPanel();
-		panel_4.setBackground(Color.LIGHT_GRAY);
-		panel_4.setBounds(0, 534, 844, 38);
-		contentPane.add(panel_4);
-		
-		JLabel copyrigth = new JLabel("\u00A9 Desenvolvido por Adlem, Breno e Victor");
-		panel_4.add(copyrigth);
-		
 		JComboBox registradores = new JComboBox();
 		registradores.setBackground(SystemColor.menu);
 		registradores.setModel(new DefaultComboBoxModel(new String[] {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"}));
@@ -524,6 +270,259 @@ public class InterfaceMain extends JFrame {
 		btnAdicionar.setBounds(282, 174, 94, 29);
 		contentPane.add(btnAdicionar);
 		
+		
+		JLabel[] campoPilha = {pilha1, pilha2, pilha3, pilha4, pilha5, pilha6, pilha7, pilha8, pilha9, pilha10};
+		
+		JTextArea campoInstrucoes = new JTextArea();
+		campoInstrucoes.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		campoInstrucoes.setBounds(40, 361, 332, 79);
+		contentPane.add(campoInstrucoes);
+		
+		JButton btnExecutar = new JButton("Executar");
+		btnExecutar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				instrucao = campoInstrucoes.getText();
+				
+				if (instrucao.length() >= 5)
+					instrucaoCompleta = instrucao.split(" ");
+				else
+					instrucaoCompleta[0] = instrucao;
+				
+				switch (instrucaoCompleta[0].trim().toUpperCase()) {
+				case "POP":
+					if(operandos[0] != null) {
+						switch (instrucaoCompleta[1].trim().toUpperCase()) {
+						case "A":
+							popPilha(pilha, regs, 0, "A", regA);
+							break;
+						case "B":
+							popPilha(pilha, regs, 1, "B", regB);
+							break;
+						case "C":
+							popPilha(pilha, regs, 2, "C", regC);
+							break;
+						case "D":
+							popPilha(pilha, regs, 3, "D", regD);
+							break;
+						case "E":
+							popPilha(pilha, regs, 4, "E", regE);
+							break;
+						case "F":
+							popPilha(pilha, regs, 5, "F", regF);
+							break;
+						case "G":
+							popPilha(pilha, regs, 6, "G", regG);
+							break;
+						case "H":
+							popPilha(pilha, regs, 7, "H", regH);
+							break;
+						case "I":
+							popPilha(pilha, regs, 8, "I", regI);
+							break;
+						case "J":
+							popPilha(pilha, regs, 9, "J", regJ);
+							break;
+		
+						default:
+							JOptionPane.showMessageDialog(InterfaceMain.this, "Registrador não encontrado!");
+							break;
+						}
+					} else {
+						JOptionPane.showMessageDialog(InterfaceMain.this, "Não é possível executar esta instrução!");
+					}
+					break;
+				case "PUSH":
+					switch (instrucaoCompleta[1].trim().toUpperCase()) {
+					case "A":
+						pushPilha(pilha, regs, 0);
+						break;
+					case "B":
+						pushPilha(pilha, regs, 1);
+						break;
+					case "C":
+						pushPilha(pilha, regs, 2);
+						break;
+					case "D":
+						pushPilha(pilha, regs, 3);
+						break;
+					case "E":
+						pushPilha(pilha, regs, 4);
+						break;
+					case "F":
+						pushPilha(pilha, regs, 5);
+						break;
+					case "G":
+						pushPilha(pilha, regs, 6);
+						break;
+					case "H":
+						pushPilha(pilha, regs, 7);
+						break;
+					case "I":
+						pushPilha(pilha, regs, 8);
+						break;
+					case "J":
+						pushPilha(pilha, regs, 9);
+						break;
+
+					default:
+						JOptionPane.showMessageDialog(InterfaceMain.this, "Registrador não encontrado!");
+						break;
+					}
+					break;
+				case "ADD":
+					operandos = operandosPilha(pilha);
+					if(operandos[0] != null){
+						r1 = operandos[0];
+						r2 = operandos[1];
+						pilha[r2] = pilha[r2] + pilha[r1];
+						pilha[r1] = null;
+					} else {
+						JOptionPane.showMessageDialog(InterfaceMain.this, "Não é possível executar esta instrução!");
+					}
+					break;
+				case "SUB":
+					operandos = operandosPilha(pilha);
+					if(operandos[0] != null){
+						r1 = operandos[0];
+						r2 = operandos[1];
+						pilha[r2] = pilha[r2] - pilha[r1];
+						pilha[r1] = null;
+					} else {
+						JOptionPane.showMessageDialog(InterfaceMain.this, "Não é possível executar esta instrução!");
+					}
+					break;
+				case "MULT":
+					operandos = operandosPilha(pilha);
+					if(operandos[0] != null){
+						r1 = operandos[0];
+						r2 = operandos[1];
+						pilha[r2] = pilha[r2] * pilha[r1];
+						pilha[r1] = null;
+					} else {
+						JOptionPane.showMessageDialog(InterfaceMain.this, "Não é possível executar esta instrução!");
+					}
+					break;
+				case "DIV":
+					operandos = operandosPilha(pilha);
+					if(operandos[0] != null){
+						r1 = operandos[0];
+						r2 = operandos[1];
+						pilha[r2] = pilha[r2] / pilha[r1];
+						pilha[r1] = null;
+					} else {
+						JOptionPane.showMessageDialog(InterfaceMain.this, "Não é possível executar esta instrução!");
+					}
+					break;
+				case "AND":
+					operandos = operandosPilha(pilha);
+					if(operandos[0] != null){
+						r1 = operandos[0];
+						r2 = operandos[1];
+						pilha[r2] = pilha[r2] & pilha[r1];
+						pilha[r1] = null;
+					} else {
+						JOptionPane.showMessageDialog(InterfaceMain.this, "Não é possível executar esta instrução!");
+					}
+					break;
+				case "OR":
+					operandos = operandosPilha(pilha);
+					if(operandos[0] != null){
+						r1 = operandos[0];
+						r2 = operandos[1];
+						pilha[r2] = pilha[r2] | pilha[r1];
+						pilha[r1] = null;
+					} else {
+						JOptionPane.showMessageDialog(InterfaceMain.this, "Não é possível executar esta instrução!");
+					}
+					break;
+				case "XOR":
+					operandos = operandosPilha(pilha);
+					if(operandos[0] != null){
+						r1 = operandos[0];
+						r2 = operandos[1];
+						pilha[r2] = pilha[r2] ^ pilha[r1];
+						pilha[r1] = null;
+					} else {
+						JOptionPane.showMessageDialog(InterfaceMain.this, "Não é possível executar esta instrução!");
+					}
+					break;
+				case "NOT":
+					operandos = operandosPilha(pilha);
+					if(operandos[0] != null){
+						r1 = operandos[0];
+						pilha[r1] = ~pilha[r1];
+					} else {
+						pilha[0] = ~pilha[0];
+					}
+					break;
+					
+				default:
+					JOptionPane.showMessageDialog(InterfaceMain.this, "Instrução não reconhecida!");
+					break;
+				}
+				//String pilhaTexto = imprimirPilha(pilha, campoPilha);
+				//pilha1.setText(pilhaTexto);
+				imprimirPilha(pilha, campoPilha);
+				campoInstrucoes.setText("");
+			}
+		});
+		btnExecutar.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnExecutar.setBackground(SystemColor.controlHighlight);
+		btnExecutar.setBounds(278, 454, 94, 29);
+		contentPane.add(btnExecutar);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(SystemColor.scrollbar);
+		panel.setBounds(40, 363, 336, 79);
+		contentPane.add(panel);
+		
+		JLabel lblPilha = new JLabel("PILHA");
+		lblPilha.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblPilha.setBounds(678, 134, 44, 20);
+		contentPane.add(lblPilha);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
+		panel_1.setBackground(Color.WHITE);
+		panel_1.setBounds(453, 189, 71, 30);
+		contentPane.add(panel_1);
+		
+		JLabel pc = new JLabel("");
+		panel_1.add(pc);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
+		panel_2.setBackground(Color.WHITE);
+		panel_2.setBounds(453, 304, 71, 30);
+		contentPane.add(panel_2);
+		
+		JLabel ir = new JLabel("");
+		panel_2.add(ir);
+		
+		JLabel lblNewLabel = new JLabel("PC");
+		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblNewLabel.setBounds(453, 164, 29, 14);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblIr = new JLabel("IR");
+		lblIr.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblIr.setBounds(453, 278, 29, 14);
+		contentPane.add(lblIr);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(Color.LIGHT_GRAY);
+		panel_3.setBounds(0, 0, 844, 79);
+		contentPane.add(panel_3);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(Color.LIGHT_GRAY);
+		panel_4.setBounds(0, 534, 844, 38);
+		contentPane.add(panel_4);
+		
+		JLabel copyrigth = new JLabel("\u00A9 Desenvolvido por Adlem, Breno e Victor");
+		panel_4.add(copyrigth);
+		
+		
 		JSeparator separator = new JSeparator();
 		separator.setForeground(SystemColor.controlShadow);
 		separator.setOrientation(SwingConstants.VERTICAL);
@@ -623,15 +622,18 @@ public class InterfaceMain extends JFrame {
 		contentPane.add(panel_5);
 		
 	}
-	static void popPilha(Integer[] pilha, Integer[] regs, int indice) {
+	
+	static void popPilha(Integer[] pilha, Integer[] regs, int indice, String letraReg, JLabel label) {
 		Integer[] operandos = operandosPilha(pilha);
 		Integer topo = operandos[0];
 		if(topo != null) {
 			regs[indice] = pilha[topo];
 			pilha[topo] = null;
+			label.setText(letraReg + " = " + regs[indice]);
 		} else {
 			regs[indice] = pilha[0];
 			pilha[0] = null;
+			label.setText(letraReg + " = " + regs[indice]);
 		}
 	}
 	

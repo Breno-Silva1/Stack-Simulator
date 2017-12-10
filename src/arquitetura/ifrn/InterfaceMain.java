@@ -21,6 +21,8 @@ import javax.swing.JTextArea;
 import javax.swing.border.BevelBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class InterfaceMain extends JFrame {
 
@@ -32,13 +34,15 @@ public class InterfaceMain extends JFrame {
 	private JTextField valorReg;
 	Integer[] regs = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; 
 	
-	//VINDOS DO MAIN
-	String[] instrucaoCompleta = new String[2];
+	String[] instrucaoCompleta = new String[3];
 	String instrucao = null;
 	Integer[] pilha = new Integer[10];
 	Integer[] operandos = new Integer[2];
 	int r1 = 0, r2 = 0;
 	
+	//MEMÓRIA
+	String[] instrucoes = new String[5];
+	Integer[] dados = new Integer[5];
 
 	/**
 	 * Launch the application.
@@ -64,7 +68,7 @@ public class InterfaceMain extends JFrame {
 		setTitle("Stack Simulator");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceMain.class.getResource("/com/sun/java/swing/plaf/windows/icons/Computer.gif")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 850, 600);
+		setBounds(100, 100, 1100, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -73,7 +77,7 @@ public class InterfaceMain extends JFrame {
 		JLabel title = new JLabel("Stack Simulator");
 		title.setForeground(Color.BLACK);
 		title.setFont(new Font("Century Gothic", Font.BOLD, 35));
-		title.setBounds(298, 12, 264, 56);
+		title.setBounds(450, 12, 264, 56);
 		contentPane.add(title);
 		
 		JLabel lblValorDosRegistradores = new JLabel("Valor dos registradores:");
@@ -96,61 +100,61 @@ public class InterfaceMain extends JFrame {
 		JLabel pilha1 = new JLabel("");
 		pilha1.setFont(new Font("Arial", Font.BOLD, 12));
 		pilha1.setVerticalAlignment(SwingConstants.BOTTOM);
-		pilha1.setBounds(694, 475, 113, 25);
+		pilha1.setBounds(643, 462, 113, 25);
 		contentPane.add(pilha1);
 		
 		JLabel pilha2 = new JLabel("");
 		pilha2.setFont(new Font("Arial", Font.BOLD, 12));
 		pilha2.setVerticalAlignment(SwingConstants.BOTTOM);
-		pilha2.setBounds(694, 443, 113, 25);
+		pilha2.setBounds(643, 430, 113, 25);
 		contentPane.add(pilha2);
 		
 		JLabel pilha3 = new JLabel("");
 		pilha3.setFont(new Font("Arial", Font.BOLD, 12));
 		pilha3.setVerticalAlignment(SwingConstants.BOTTOM);
-		pilha3.setBounds(694, 408, 113, 25);
+		pilha3.setBounds(643, 395, 113, 25);
 		contentPane.add(pilha3);
 		
 		JLabel pilha4 = new JLabel("");
 		pilha4.setFont(new Font("Arial", Font.BOLD, 12));
 		pilha4.setVerticalAlignment(SwingConstants.BOTTOM);
-		pilha4.setBounds(694, 372, 113, 25);
+		pilha4.setBounds(643, 359, 113, 25);
 		contentPane.add(pilha4);
 		
 		JLabel pilha5 = new JLabel("");
 		pilha5.setFont(new Font("Arial", Font.BOLD, 12));
 		pilha5.setVerticalAlignment(SwingConstants.BOTTOM);
-		pilha5.setBounds(694, 335, 113, 25);
+		pilha5.setBounds(643, 322, 113, 25);
 		contentPane.add(pilha5);
 		
 		JLabel pilha6 = new JLabel("");
 		pilha6.setFont(new Font("Arial", Font.BOLD, 12));
 		pilha6.setVerticalAlignment(SwingConstants.BOTTOM);
-		pilha6.setBounds(694, 304, 113, 25);
+		pilha6.setBounds(643, 291, 113, 25);
 		contentPane.add(pilha6);
 		
 		JLabel pilha7 = new JLabel("");
 		pilha7.setFont(new Font("Arial", Font.BOLD, 12));
 		pilha7.setVerticalAlignment(SwingConstants.BOTTOM);
-		pilha7.setBounds(694, 270, 113, 25);
+		pilha7.setBounds(643, 257, 113, 25);
 		contentPane.add(pilha7);
 		
 		JLabel pilha8 = new JLabel("");
 		pilha8.setFont(new Font("Arial", Font.BOLD, 12));
 		pilha8.setVerticalAlignment(SwingConstants.BOTTOM);
-		pilha8.setBounds(695, 237, 113, 25);
+		pilha8.setBounds(644, 224, 113, 25);
 		contentPane.add(pilha8);
 		
 		JLabel pilha9 = new JLabel("");
 		pilha9.setFont(new Font("Arial", Font.BOLD, 12));
 		pilha9.setVerticalAlignment(SwingConstants.BOTTOM);
-		pilha9.setBounds(694, 201, 113, 25);
+		pilha9.setBounds(643, 188, 113, 25);
 		contentPane.add(pilha9);
 		
 		JLabel pilha10 = new JLabel("");
 		pilha10.setFont(new Font("Arial", Font.BOLD, 12));
 		pilha10.setVerticalAlignment(SwingConstants.BOTTOM);
-		pilha10.setBounds(694, 165, 113, 25);
+		pilha10.setBounds(643, 152, 113, 25);
 		contentPane.add(pilha10);
 		// FIM LABELS DA PILHA
 		
@@ -270,8 +274,143 @@ public class InterfaceMain extends JFrame {
 		btnAdicionar.setBounds(282, 174, 94, 29);
 		contentPane.add(btnAdicionar);
 		
+		JLabel p_endereco1 = new JLabel("");
+		p_endereco1.setVerticalAlignment(SwingConstants.BOTTOM);
+		p_endereco1.setFont(new Font("Arial", Font.BOLD, 12));
+		p_endereco1.setBounds(846, 168, 50, 25);
+		contentPane.add(p_endereco1);
+		
+		JLabel p_endereco2 = new JLabel("");
+		p_endereco2.setVerticalAlignment(SwingConstants.BOTTOM);
+		p_endereco2.setFont(new Font("Arial", Font.BOLD, 12));
+		p_endereco2.setBounds(846, 197, 50, 25);
+		contentPane.add(p_endereco2);
+		
+		JLabel p_endereco3 = new JLabel("");
+		p_endereco3.setVerticalAlignment(SwingConstants.BOTTOM);
+		p_endereco3.setFont(new Font("Arial", Font.BOLD, 12));
+		p_endereco3.setBounds(846, 228, 50, 25);
+		contentPane.add(p_endereco3);
+		
+		JLabel p_endereco4 = new JLabel("");
+		p_endereco4.setVerticalAlignment(SwingConstants.BOTTOM);
+		p_endereco4.setFont(new Font("Arial", Font.BOLD, 12));
+		p_endereco4.setBounds(846, 257, 50, 25);
+		contentPane.add(p_endereco4);
+		
+		JSeparator separator_21 = new JSeparator();
+		separator_21.setForeground(Color.BLACK);
+		separator_21.setBounds(836, 472, 219, 20);
+		contentPane.add(separator_21);
+		
+		JLabel p_endereco5 = new JLabel("");
+		p_endereco5.setVerticalAlignment(SwingConstants.BOTTOM);
+		p_endereco5.setFont(new Font("Arial", Font.BOLD, 12));
+		p_endereco5.setBounds(846, 287, 50, 25);
+		contentPane.add(p_endereco5);
+		
+		JLabel p_dados5 = new JLabel("");
+		p_dados5.setVerticalAlignment(SwingConstants.BOTTOM);
+		p_dados5.setFont(new Font("Arial", Font.BOLD, 12));
+		p_dados5.setBounds(850, 470, 46, 25);
+		contentPane.add(p_dados5);
+		
+		JLabel p_dados4 = new JLabel("");
+		p_dados4.setVerticalAlignment(SwingConstants.BOTTOM);
+		p_dados4.setFont(new Font("Arial", Font.BOLD, 12));
+		p_dados4.setBounds(850, 440, 46, 25);
+		contentPane.add(p_dados4);
+		
+		JLabel p_dados3 = new JLabel("");
+		p_dados3.setVerticalAlignment(SwingConstants.BOTTOM);
+		p_dados3.setFont(new Font("Arial", Font.BOLD, 12));
+		p_dados3.setBounds(850, 411, 46, 25);
+		contentPane.add(p_dados3);
+		
+		JLabel p_dados2 = new JLabel("");
+		p_dados2.setVerticalAlignment(SwingConstants.BOTTOM);
+		p_dados2.setFont(new Font("Arial", Font.BOLD, 12));
+		p_dados2.setBounds(850, 380, 46, 25);
+		contentPane.add(p_dados2);
+		
+		JLabel p_dados1 = new JLabel("");
+		p_dados1.setVerticalAlignment(SwingConstants.BOTTOM);
+		p_dados1.setFont(new Font("Arial", Font.BOLD, 12));
+		p_dados1.setBounds(850, 351, 46, 25);
+		contentPane.add(p_dados1);
+		
+		JSeparator separator_15 = new JSeparator();
+		separator_15.setOrientation(SwingConstants.VERTICAL);
+		separator_15.setForeground(SystemColor.controlShadow);
+		separator_15.setBounds(797, 142, 29, 341);
+		contentPane.add(separator_15);
+		
+		JLabel endereco1 = new JLabel("");
+		endereco1.setVerticalAlignment(SwingConstants.BOTTOM);
+		endereco1.setFont(new Font("Arial", Font.BOLD, 12));
+		endereco1.setBounds(919, 169, 134, 25);
+		contentPane.add(endereco1);
+		
+		JLabel endereco2 = new JLabel("");
+		endereco2.setVerticalAlignment(SwingConstants.BOTTOM);
+		endereco2.setFont(new Font("Arial", Font.BOLD, 12));
+		endereco2.setBounds(919, 198, 134, 25);
+		contentPane.add(endereco2);
+		
+		JLabel endereco3 = new JLabel("");
+		endereco3.setVerticalAlignment(SwingConstants.BOTTOM);
+		endereco3.setFont(new Font("Arial", Font.BOLD, 12));
+		endereco3.setBounds(919, 229, 134, 25);
+		contentPane.add(endereco3);
+		
+		JLabel endereco4 = new JLabel("");
+		endereco4.setVerticalAlignment(SwingConstants.BOTTOM);
+		endereco4.setFont(new Font("Arial", Font.BOLD, 12));
+		endereco4.setBounds(919, 261, 134, 25);
+		contentPane.add(endereco4);
+		
+		JLabel endereco5 = new JLabel("");
+		endereco5.setVerticalAlignment(SwingConstants.BOTTOM);
+		endereco5.setFont(new Font("Arial", Font.BOLD, 12));
+		endereco5.setBounds(919, 291, 134, 25);
+		contentPane.add(endereco5);
+		
+		JLabel dados1 = new JLabel("");
+		dados1.setVerticalAlignment(SwingConstants.BOTTOM);
+		dados1.setFont(new Font("Arial", Font.BOLD, 12));
+		dados1.setBounds(919, 351, 123, 25);
+		contentPane.add(dados1);
+		
+		JLabel dados2 = new JLabel("");
+		dados2.setVerticalAlignment(SwingConstants.BOTTOM);
+		dados2.setFont(new Font("Arial", Font.BOLD, 12));
+		dados2.setBounds(919, 380, 123, 25);
+		contentPane.add(dados2);
+		
+		JLabel dados3 = new JLabel("");
+		dados3.setVerticalAlignment(SwingConstants.BOTTOM);
+		dados3.setFont(new Font("Arial", Font.BOLD, 12));
+		dados3.setBounds(919, 411, 123, 25);
+		contentPane.add(dados3);
+		
+		JLabel dados4 = new JLabel("");
+		dados4.setVerticalAlignment(SwingConstants.BOTTOM);
+		dados4.setFont(new Font("Arial", Font.BOLD, 12));
+		dados4.setBounds(919, 440, 123, 25);
+		contentPane.add(dados4);
+		
+		JLabel dados5 = new JLabel("");
+		dados5.setVerticalAlignment(SwingConstants.BOTTOM);
+		dados5.setFont(new Font("Arial", Font.BOLD, 12));
+		dados5.setBounds(919, 471, 123, 24);
+		contentPane.add(dados5);
+		
 		
 		JLabel[] campoPilha = {pilha1, pilha2, pilha3, pilha4, pilha5, pilha6, pilha7, pilha8, pilha9, pilha10};
+		JLabel[] memoriaInstrucoes = {endereco1, endereco2, endereco3, endereco4, endereco5};
+		JLabel[] p_memoriaInstrucoes = {p_endereco1, p_endereco2, p_endereco3, p_endereco4, p_endereco5};
+		JLabel[] memoriaDados = {dados1, dados2, dados3, dados4, dados5};
+		JLabel[] p_memoriaDados = {p_dados1, p_dados2, p_dados3, p_dados4, p_dados5};
 		
 		JTextArea campoInstrucoes = new JTextArea();
 		campoInstrucoes.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -290,7 +429,7 @@ public class InterfaceMain extends JFrame {
 				
 				switch (instrucaoCompleta[0].trim().toUpperCase()) {
 				case "POP":
-					if(operandos[0] != null) {
+					if(operandos[0] != null || operandos[1] != null) {
 						switch (instrucaoCompleta[1].trim().toUpperCase()) {
 						case "A":
 							popPilha(pilha, regs, 0, "A", regA);
@@ -478,13 +617,13 @@ public class InterfaceMain extends JFrame {
 		
 		JLabel lblPilha = new JLabel("PILHA");
 		lblPilha.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblPilha.setBounds(678, 134, 44, 20);
+		lblPilha.setBounds(625, 121, 44, 20);
 		contentPane.add(lblPilha);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
 		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(453, 189, 71, 30);
+		panel_1.setBounds(432, 199, 85, 30);
 		contentPane.add(panel_1);
 		
 		JLabel pc = new JLabel("");
@@ -493,7 +632,7 @@ public class InterfaceMain extends JFrame {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
 		panel_2.setBackground(Color.WHITE);
-		panel_2.setBounds(453, 304, 71, 30);
+		panel_2.setBounds(432, 314, 85, 30);
 		contentPane.add(panel_2);
 		
 		JLabel ir = new JLabel("");
@@ -501,22 +640,22 @@ public class InterfaceMain extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("PC");
 		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblNewLabel.setBounds(453, 164, 29, 14);
+		lblNewLabel.setBounds(432, 174, 29, 14);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblIr = new JLabel("IR");
 		lblIr.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblIr.setBounds(453, 278, 29, 14);
+		lblIr.setBounds(432, 288, 29, 14);
 		contentPane.add(lblIr);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(Color.LIGHT_GRAY);
-		panel_3.setBounds(0, 0, 844, 79);
+		panel_3.setBounds(0, 0, 1094, 79);
 		contentPane.add(panel_3);
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBackground(Color.LIGHT_GRAY);
-		panel_4.setBounds(0, 534, 844, 38);
+		panel_4.setBounds(0, 534, 1094, 38);
 		contentPane.add(panel_4);
 		
 		JLabel copyrigth = new JLabel("\u00A9 Desenvolvido por Adlem, Breno e Victor");
@@ -526,7 +665,7 @@ public class InterfaceMain extends JFrame {
 		JSeparator separator = new JSeparator();
 		separator.setForeground(SystemColor.controlShadow);
 		separator.setOrientation(SwingConstants.VERTICAL);
-		separator.setBounds(414, 135, 29, 341);
+		separator.setBounds(405, 134, 29, 341);
 		contentPane.add(separator);
 		
 		JLabel lblRegistradores = new JLabel("Registradores");
@@ -542,53 +681,53 @@ public class InterfaceMain extends JFrame {
 		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setForeground(SystemColor.desktop);
-		separator_1.setBounds(588, 475, 219, 20);
+		separator_1.setBounds(537, 462, 219, 20);
 		contentPane.add(separator_1);
 		
 		JSeparator separator_2 = new JSeparator();
 		separator_2.setForeground(SystemColor.desktop);
-		separator_2.setBounds(588, 443, 219, 20);
+		separator_2.setBounds(537, 430, 219, 20);
 		contentPane.add(separator_2);
 		
 		JSeparator separator_3 = new JSeparator();
 		separator_3.setForeground(Color.BLACK);
-		separator_3.setBounds(588, 407, 219, 20);
+		separator_3.setBounds(537, 394, 219, 20);
 		contentPane.add(separator_3);
 		
 		JSeparator separator_4 = new JSeparator();
 		separator_4.setForeground(Color.BLACK);
-		separator_4.setBounds(588, 372, 219, 20);
+		separator_4.setBounds(537, 359, 219, 20);
 		contentPane.add(separator_4);
 		
 		JSeparator separator_5 = new JSeparator();
 		separator_5.setForeground(Color.BLACK);
-		separator_5.setBounds(588, 335, 219, 20);
+		separator_5.setBounds(537, 322, 219, 20);
 		contentPane.add(separator_5);
 		
 		JSeparator separator_6 = new JSeparator();
 		separator_6.setForeground(Color.BLACK);
-		separator_6.setBounds(588, 304, 219, 20);
+		separator_6.setBounds(537, 291, 219, 20);
 		contentPane.add(separator_6);
 		
 		JSeparator separator_7 = new JSeparator();
 		separator_7.setForeground(Color.BLACK);
-		separator_7.setBounds(588, 270, 219, 20);
+		separator_7.setBounds(537, 257, 219, 20);
 		contentPane.add(separator_7);
 		
 		JSeparator separator_8 = new JSeparator();
 		separator_8.setForeground(Color.BLACK);
-		separator_8.setBounds(588, 237, 219, 20);
+		separator_8.setBounds(537, 224, 219, 20);
 		contentPane.add(separator_8);
 		
 		JSeparator separator_9 = new JSeparator();
 		separator_9.setForeground(Color.BLACK);
-		separator_9.setBounds(588, 201, 219, 20);
+		separator_9.setBounds(537, 188, 219, 20);
 		contentPane.add(separator_9);
 		
 		JPanel panel_6 = new JPanel();
 		panel_6.setBorder(new BevelBorder(BevelBorder.LOWERED, SystemColor.desktop, SystemColor.desktop, SystemColor.desktop, SystemColor.desktop));
 		panel_6.setBackground(SystemColor.controlHighlight);
-		panel_6.setBounds(588, 165, 221, 343);
+		panel_6.setBounds(537, 152, 221, 343);
 		contentPane.add(panel_6);
 		
 		JSeparator separator_11 = new JSeparator();
@@ -620,6 +759,93 @@ public class InterfaceMain extends JFrame {
 		panel_5.setBackground(SystemColor.controlHighlight);
 		panel_5.setBounds(40, 234, 342, 79);
 		contentPane.add(panel_5);
+		
+		JSeparator separator_22 = new JSeparator();
+		separator_22.setForeground(Color.BLACK);
+		separator_22.setBounds(836, 253, 219, 20);
+		contentPane.add(separator_22);
+		
+		JSeparator separator_23 = new JSeparator();
+		separator_23.setForeground(Color.BLACK);
+		separator_23.setBounds(836, 223, 219, 20);
+		contentPane.add(separator_23);
+		
+		JSeparator separator_24 = new JSeparator();
+		separator_24.setForeground(Color.BLACK);
+		separator_24.setBounds(836, 193, 219, 20);
+		contentPane.add(separator_24);
+		
+		JLabel lblPosio = new JLabel("Posi\u00E7\u00E3o        Instru\u00E7\u00E3o");
+		lblPosio.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblPosio.setFont(new Font("Arial", Font.BOLD, 12));
+		lblPosio.setBounds(850, 134, 169, 25);
+		contentPane.add(lblPosio);
+		
+		JSeparator separator_26 = new JSeparator();
+		separator_26.setOrientation(SwingConstants.VERTICAL);
+		separator_26.setForeground(SystemColor.desktop);
+		separator_26.setBounds(906, 139, 29, 361);
+		contentPane.add(separator_26);
+		
+		JLabel lblPosioDados = new JLabel("Posi\u00E7\u00E3o        Dados");
+		lblPosioDados.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblPosioDados.setFont(new Font("Arial", Font.BOLD, 12));
+		lblPosioDados.setBounds(850, 318, 169, 25);
+		contentPane.add(lblPosioDados);
+		
+		JPanel panel_7 = new JPanel();
+		panel_7.setBorder(new BevelBorder(BevelBorder.LOWERED, SystemColor.desktop, SystemColor.desktop, SystemColor.desktop, SystemColor.desktop));
+		panel_7.setBackground(SystemColor.controlHighlight);
+		panel_7.setBounds(836, 136, 221, 30);
+		contentPane.add(panel_7);
+		
+		JPanel panel_8 = new JPanel();
+		panel_8.setBorder(new BevelBorder(BevelBorder.LOWERED, SystemColor.desktop, SystemColor.desktop, SystemColor.desktop, SystemColor.desktop));
+		panel_8.setBackground(SystemColor.controlHighlight);
+		panel_8.setBounds(836, 318, 221, 32);
+		contentPane.add(panel_8);
+		
+		JSeparator separator_16 = new JSeparator();
+		separator_16.setForeground(Color.BLACK);
+		separator_16.setBounds(836, 380, 220, 20);
+		contentPane.add(separator_16);
+		
+		JSeparator separator_17 = new JSeparator();
+		separator_17.setForeground(Color.BLACK);
+		separator_17.setBounds(836, 286, 219, 20);
+		contentPane.add(separator_17);
+		
+		JSeparator separator_18 = new JSeparator();
+		separator_18.setForeground(Color.BLACK);
+		separator_18.setBounds(836, 320, 220, 20);
+		contentPane.add(separator_18);
+		
+		JSeparator separator_19 = new JSeparator();
+		separator_19.setForeground(Color.BLACK);
+		separator_19.setBounds(836, 440, 217, 20);
+		contentPane.add(separator_19);
+		
+		JSeparator separator_20 = new JSeparator();
+		separator_20.setForeground(Color.BLACK);
+		separator_20.setBounds(836, 410, 221, 20);
+		contentPane.add(separator_20);
+		
+		JLabel lblMemria = new JLabel("MEM\u00D3RIA");
+		lblMemria.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblMemria.setBounds(909, 110, 97, 20);
+		contentPane.add(lblMemria);
+		
+		JPanel panel_9 = new JPanel();
+		panel_9.setBorder(new BevelBorder(BevelBorder.LOWERED, SystemColor.desktop, SystemColor.desktop, SystemColor.desktop, SystemColor.desktop));
+		panel_9.setBackground(SystemColor.menu);
+		panel_9.setBounds(836, 159, 221, 342);
+		contentPane.add(panel_9);
+		
+		JButton button = new JButton("Executar");
+		button.setFont(new Font("Tahoma", Font.BOLD, 12));
+		button.setBackground(SystemColor.controlHighlight);
+		button.setBounds(0, 0, 94, 29);
+		contentPane.add(button);
 		
 	}
 	

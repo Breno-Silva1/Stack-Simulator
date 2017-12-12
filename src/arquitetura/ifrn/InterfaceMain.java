@@ -66,7 +66,7 @@ public class InterfaceMain extends JFrame {
 	public InterfaceMain() {
 		setResizable(false);
 		setTitle("Stack Simulator");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceMain.class.getResource("/com/sun/java/swing/plaf/windows/icons/Computer.gif")));
+		//setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceMain.class.getResource("/com/sun/java/swing/plaf/windows/icons/Computer.gif")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1100, 600);
 		contentPane = new JPanel();
@@ -429,7 +429,7 @@ public class InterfaceMain extends JFrame {
 				
 				switch (instrucaoCompleta[0].trim().toUpperCase()) {
 				case "POP":
-					if(operandos[0] != null || operandos[1] != null) {
+					if(pilha[0] != null) {
 						switch (instrucaoCompleta[1].trim().toUpperCase()) {
 						case "A":
 							popPilha(pilha, regs, 0, "A", regA);

@@ -5,7 +5,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.Toolkit;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -21,8 +20,6 @@ import javax.swing.JTextArea;
 import javax.swing.border.BevelBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 public class InterfaceMain extends JFrame {
 
@@ -38,7 +35,8 @@ public class InterfaceMain extends JFrame {
 	String instrucao = null;
 	Integer[] pilha = new Integer[10];
 	Integer[] operandos = new Integer[2];
-	int r1 = 0, r2 = 0;
+	int r1 = 0, r2 = 0, x = 0;
+	boolean instrucaoValida = true;
 	
 	//MEMÓRIA
 	String[] instrucoes = new String[5];
@@ -63,6 +61,7 @@ public class InterfaceMain extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public InterfaceMain() {
 		setResizable(false);
 		setTitle("Stack Simulator");
@@ -415,12 +414,28 @@ public class InterfaceMain extends JFrame {
 		dados5.setBounds(919, 471, 123, 24);
 		contentPane.add(dados5);
 		
+		JLabel lblNewLabel = new JLabel("PC");
+		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblNewLabel.setBounds(432, 174, 29, 14);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblIr = new JLabel("IR");
+		lblIr.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblIr.setBounds(432, 288, 29, 14);
+		contentPane.add(lblIr);
+		
+		JLabel pc = new JLabel("");
+		pc.setFont(new Font("Arial", Font.PLAIN, 12));
+		pc.setBounds(442, 205, 62, 20);
+		contentPane.add(pc);
+		
+		JLabel ir = new JLabel("");
+		ir.setFont(new Font("Arial", Font.PLAIN, 10));
+		ir.setBounds(442, 320, 75, 20);
+		contentPane.add(ir);
 		
 		JLabel[] campoPilha = {pilha1, pilha2, pilha3, pilha4, pilha5, pilha6, pilha7, pilha8, pilha9, pilha10};
 		JLabel[] memoriaInstrucoes = {endereco1, endereco2, endereco3, endereco4, endereco5};
-		JLabel[] p_memoriaInstrucoes = {p_endereco1, p_endereco2, p_endereco3, p_endereco4, p_endereco5};
-		JLabel[] memoriaDados = {dados1, dados2, dados3, dados4, dados5};
-		JLabel[] p_memoriaDados = {p_dados1, p_dados2, p_dados3, p_dados4, p_dados5};
 		
 		JTextArea campoInstrucoes = new JTextArea();
 		campoInstrucoes.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -490,10 +505,12 @@ public class InterfaceMain extends JFrame {
 		
 						default:
 							JOptionPane.showMessageDialog(InterfaceMain.this, "Registrador ou Posição de Memória não encontrado!");
+							instrucaoValida = false;
 							break;
 						}
 					} else {
 						JOptionPane.showMessageDialog(InterfaceMain.this, "Não é possível executar esta instrução!");
+						instrucaoValida = false;
 					}
 					break;
 				case "PUSH":
@@ -547,6 +564,7 @@ public class InterfaceMain extends JFrame {
 						
 					default:
 						JOptionPane.showMessageDialog(InterfaceMain.this, "Registrador ou Posição de Memória não encontrado!");
+						instrucaoValida = false;
 						break;
 					}
 					break;
@@ -559,6 +577,7 @@ public class InterfaceMain extends JFrame {
 						pilha[r1] = null;
 					} else {
 						JOptionPane.showMessageDialog(InterfaceMain.this, "Não é possível executar esta instrução!");
+						instrucaoValida = false;
 					}
 					break;
 				case "SUB":
@@ -570,6 +589,7 @@ public class InterfaceMain extends JFrame {
 						pilha[r1] = null;
 					} else {
 						JOptionPane.showMessageDialog(InterfaceMain.this, "Não é possível executar esta instrução!");
+						instrucaoValida = false;
 					}
 					break;
 				case "MULT":
@@ -581,6 +601,7 @@ public class InterfaceMain extends JFrame {
 						pilha[r1] = null;
 					} else {
 						JOptionPane.showMessageDialog(InterfaceMain.this, "Não é possível executar esta instrução!");
+						instrucaoValida = false;
 					}
 					break;
 				case "DIV":
@@ -592,6 +613,7 @@ public class InterfaceMain extends JFrame {
 						pilha[r1] = null;
 					} else {
 						JOptionPane.showMessageDialog(InterfaceMain.this, "Não é possível executar esta instrução!");
+						instrucaoValida = false;
 					}
 					break;
 				case "AND":
@@ -603,6 +625,7 @@ public class InterfaceMain extends JFrame {
 						pilha[r1] = null;
 					} else {
 						JOptionPane.showMessageDialog(InterfaceMain.this, "Não é possível executar esta instrução!");
+						instrucaoValida = false;
 					}
 					break;
 				case "OR":
@@ -614,6 +637,7 @@ public class InterfaceMain extends JFrame {
 						pilha[r1] = null;
 					} else {
 						JOptionPane.showMessageDialog(InterfaceMain.this, "Não é possível executar esta instrução!");
+						instrucaoValida = false;
 					}
 					break;
 				case "XOR":
@@ -625,6 +649,7 @@ public class InterfaceMain extends JFrame {
 						pilha[r1] = null;
 					} else {
 						JOptionPane.showMessageDialog(InterfaceMain.this, "Não é possível executar esta instrução!");
+						instrucaoValida = false;
 					}
 					break;
 				case "NOT":
@@ -639,10 +664,16 @@ public class InterfaceMain extends JFrame {
 					
 				default:
 					JOptionPane.showMessageDialog(InterfaceMain.this, "Instrução não reconhecida!");
+					instrucaoValida = false;
 					break;
 				}
 				//String pilhaTexto = imprimirPilha(pilha, campoPilha);
 				//pilha1.setText(pilhaTexto);
+				if(instrucaoValida){
+					x = instrucaoMemoria(x, instrucoes, memoriaInstrucoes, instrucao, pc, ir);
+				} else {
+					instrucaoValida = true;
+				}
 				imprimirPilha(pilha, campoPilha);
 				campoInstrucoes.setText("");
 			}
@@ -668,27 +699,11 @@ public class InterfaceMain extends JFrame {
 		panel_1.setBounds(432, 199, 85, 30);
 		contentPane.add(panel_1);
 		
-		JLabel pc = new JLabel("");
-		panel_1.add(pc);
-		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
 		panel_2.setBackground(Color.WHITE);
 		panel_2.setBounds(432, 314, 85, 30);
 		contentPane.add(panel_2);
-		
-		JLabel ir = new JLabel("");
-		panel_2.add(ir);
-		
-		JLabel lblNewLabel = new JLabel("PC");
-		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblNewLabel.setBounds(432, 174, 29, 14);
-		contentPane.add(lblNewLabel);
-		
-		JLabel lblIr = new JLabel("IR");
-		lblIr.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblIr.setBounds(432, 288, 29, 14);
-		contentPane.add(lblIr);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(Color.LIGHT_GRAY);
@@ -947,6 +962,18 @@ public class InterfaceMain extends JFrame {
 			operandos[1] = (index - 2);	
 		} 
 		return operandos;
+	}
+	
+	static int instrucaoMemoria(int index, String[] instrucoes, JLabel[] labels, String instrucao, JLabel pc, JLabel ir){
+		instrucoes[index] = instrucao;
+		labels[index].setText(instrucao);
+		pc.setText(""+(index+1));
+		ir.setText(instrucao);
+		index++;
+		if (index == 5) {
+			index = 0;
+		}
+		return index;
 	}
 	
 	static void imprimirPilha(Integer[] registradores, JLabel[] labels){

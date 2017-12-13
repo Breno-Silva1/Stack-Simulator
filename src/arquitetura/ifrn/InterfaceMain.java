@@ -274,28 +274,32 @@ public class InterfaceMain extends JFrame {
 		btnAdicionar.setBounds(282, 174, 94, 29);
 		contentPane.add(btnAdicionar);
 		
-		JLabel p_endereco1 = new JLabel("");
+		JLabel p_endereco1 = new JLabel("#1");
+		p_endereco1.setForeground(Color.DARK_GRAY);
 		p_endereco1.setVerticalAlignment(SwingConstants.BOTTOM);
-		p_endereco1.setFont(new Font("Arial", Font.BOLD, 12));
-		p_endereco1.setBounds(846, 168, 50, 25);
+		p_endereco1.setFont(new Font("Arial", Font.BOLD, 14));
+		p_endereco1.setBounds(860, 168, 40, 25);
 		contentPane.add(p_endereco1);
 		
-		JLabel p_endereco2 = new JLabel("");
+		JLabel p_endereco2 = new JLabel("#2");
+		p_endereco2.setForeground(Color.DARK_GRAY);
 		p_endereco2.setVerticalAlignment(SwingConstants.BOTTOM);
-		p_endereco2.setFont(new Font("Arial", Font.BOLD, 12));
-		p_endereco2.setBounds(846, 197, 50, 25);
+		p_endereco2.setFont(new Font("Arial", Font.BOLD, 14));
+		p_endereco2.setBounds(860, 197, 40, 25);
 		contentPane.add(p_endereco2);
 		
-		JLabel p_endereco3 = new JLabel("");
+		JLabel p_endereco3 = new JLabel("#3");
+		p_endereco3.setForeground(Color.DARK_GRAY);
 		p_endereco3.setVerticalAlignment(SwingConstants.BOTTOM);
-		p_endereco3.setFont(new Font("Arial", Font.BOLD, 12));
-		p_endereco3.setBounds(846, 228, 50, 25);
+		p_endereco3.setFont(new Font("Arial", Font.BOLD, 14));
+		p_endereco3.setBounds(860, 228, 40, 25);
 		contentPane.add(p_endereco3);
 		
-		JLabel p_endereco4 = new JLabel("");
+		JLabel p_endereco4 = new JLabel("#4");
+		p_endereco4.setForeground(Color.DARK_GRAY);
 		p_endereco4.setVerticalAlignment(SwingConstants.BOTTOM);
-		p_endereco4.setFont(new Font("Arial", Font.BOLD, 12));
-		p_endereco4.setBounds(846, 257, 50, 25);
+		p_endereco4.setFont(new Font("Arial", Font.BOLD, 14));
+		p_endereco4.setBounds(860, 257, 40, 25);
 		contentPane.add(p_endereco4);
 		
 		JSeparator separator_21 = new JSeparator();
@@ -303,40 +307,46 @@ public class InterfaceMain extends JFrame {
 		separator_21.setBounds(836, 472, 219, 20);
 		contentPane.add(separator_21);
 		
-		JLabel p_endereco5 = new JLabel("");
+		JLabel p_endereco5 = new JLabel("#5");
+		p_endereco5.setForeground(Color.DARK_GRAY);
 		p_endereco5.setVerticalAlignment(SwingConstants.BOTTOM);
-		p_endereco5.setFont(new Font("Arial", Font.BOLD, 12));
-		p_endereco5.setBounds(846, 287, 50, 25);
+		p_endereco5.setFont(new Font("Arial", Font.BOLD, 14));
+		p_endereco5.setBounds(860, 287, 40, 25);
 		contentPane.add(p_endereco5);
 		
-		JLabel p_dados5 = new JLabel("");
+		JLabel p_dados5 = new JLabel("#10");
+		p_dados5.setForeground(Color.DARK_GRAY);
 		p_dados5.setVerticalAlignment(SwingConstants.BOTTOM);
-		p_dados5.setFont(new Font("Arial", Font.BOLD, 12));
-		p_dados5.setBounds(850, 470, 46, 25);
+		p_dados5.setFont(new Font("Arial", Font.BOLD, 14));
+		p_dados5.setBounds(858, 470, 36, 25);
 		contentPane.add(p_dados5);
 		
-		JLabel p_dados4 = new JLabel("");
+		JLabel p_dados4 = new JLabel("#9");
+		p_dados4.setForeground(Color.DARK_GRAY);
 		p_dados4.setVerticalAlignment(SwingConstants.BOTTOM);
-		p_dados4.setFont(new Font("Arial", Font.BOLD, 12));
-		p_dados4.setBounds(850, 440, 46, 25);
+		p_dados4.setFont(new Font("Arial", Font.BOLD, 14));
+		p_dados4.setBounds(860, 440, 36, 25);
 		contentPane.add(p_dados4);
 		
-		JLabel p_dados3 = new JLabel("");
+		JLabel p_dados3 = new JLabel("#8");
+		p_dados3.setForeground(Color.DARK_GRAY);
 		p_dados3.setVerticalAlignment(SwingConstants.BOTTOM);
-		p_dados3.setFont(new Font("Arial", Font.BOLD, 12));
-		p_dados3.setBounds(850, 411, 46, 25);
+		p_dados3.setFont(new Font("Arial", Font.BOLD, 14));
+		p_dados3.setBounds(860, 411, 36, 25);
 		contentPane.add(p_dados3);
 		
-		JLabel p_dados2 = new JLabel("");
+		JLabel p_dados2 = new JLabel("#7");
+		p_dados2.setForeground(Color.DARK_GRAY);
 		p_dados2.setVerticalAlignment(SwingConstants.BOTTOM);
-		p_dados2.setFont(new Font("Arial", Font.BOLD, 12));
-		p_dados2.setBounds(850, 380, 46, 25);
+		p_dados2.setFont(new Font("Arial", Font.BOLD, 14));
+		p_dados2.setBounds(860, 380, 36, 25);
 		contentPane.add(p_dados2);
 		
-		JLabel p_dados1 = new JLabel("");
+		JLabel p_dados1 = new JLabel("#6");
+		p_dados1.setForeground(Color.DARK_GRAY);
 		p_dados1.setVerticalAlignment(SwingConstants.BOTTOM);
-		p_dados1.setFont(new Font("Arial", Font.BOLD, 12));
-		p_dados1.setBounds(850, 351, 46, 25);
+		p_dados1.setFont(new Font("Arial", Font.BOLD, 14));
+		p_dados1.setBounds(860, 351, 36, 25);
 		contentPane.add(p_dados1);
 		
 		JSeparator separator_15 = new JSeparator();
@@ -347,61 +357,61 @@ public class InterfaceMain extends JFrame {
 		
 		JLabel endereco1 = new JLabel("");
 		endereco1.setVerticalAlignment(SwingConstants.BOTTOM);
-		endereco1.setFont(new Font("Arial", Font.BOLD, 12));
+		endereco1.setFont(new Font("Arial", Font.BOLD, 15));
 		endereco1.setBounds(919, 169, 134, 25);
 		contentPane.add(endereco1);
 		
 		JLabel endereco2 = new JLabel("");
 		endereco2.setVerticalAlignment(SwingConstants.BOTTOM);
-		endereco2.setFont(new Font("Arial", Font.BOLD, 12));
+		endereco2.setFont(new Font("Arial", Font.BOLD, 15));
 		endereco2.setBounds(919, 198, 134, 25);
 		contentPane.add(endereco2);
 		
 		JLabel endereco3 = new JLabel("");
 		endereco3.setVerticalAlignment(SwingConstants.BOTTOM);
-		endereco3.setFont(new Font("Arial", Font.BOLD, 12));
+		endereco3.setFont(new Font("Arial", Font.BOLD, 15));
 		endereco3.setBounds(919, 229, 134, 25);
 		contentPane.add(endereco3);
 		
 		JLabel endereco4 = new JLabel("");
 		endereco4.setVerticalAlignment(SwingConstants.BOTTOM);
-		endereco4.setFont(new Font("Arial", Font.BOLD, 12));
+		endereco4.setFont(new Font("Arial", Font.BOLD, 15));
 		endereco4.setBounds(919, 261, 134, 25);
 		contentPane.add(endereco4);
 		
 		JLabel endereco5 = new JLabel("");
 		endereco5.setVerticalAlignment(SwingConstants.BOTTOM);
-		endereco5.setFont(new Font("Arial", Font.BOLD, 12));
+		endereco5.setFont(new Font("Arial", Font.BOLD, 15));
 		endereco5.setBounds(919, 291, 134, 25);
 		contentPane.add(endereco5);
 		
 		JLabel dados1 = new JLabel("");
 		dados1.setVerticalAlignment(SwingConstants.BOTTOM);
-		dados1.setFont(new Font("Arial", Font.BOLD, 12));
+		dados1.setFont(new Font("Arial", Font.BOLD, 15));
 		dados1.setBounds(919, 351, 123, 25);
 		contentPane.add(dados1);
 		
 		JLabel dados2 = new JLabel("");
 		dados2.setVerticalAlignment(SwingConstants.BOTTOM);
-		dados2.setFont(new Font("Arial", Font.BOLD, 12));
+		dados2.setFont(new Font("Arial", Font.BOLD, 15));
 		dados2.setBounds(919, 380, 123, 25);
 		contentPane.add(dados2);
 		
 		JLabel dados3 = new JLabel("");
 		dados3.setVerticalAlignment(SwingConstants.BOTTOM);
-		dados3.setFont(new Font("Arial", Font.BOLD, 12));
+		dados3.setFont(new Font("Arial", Font.BOLD, 15));
 		dados3.setBounds(919, 411, 123, 25);
 		contentPane.add(dados3);
 		
 		JLabel dados4 = new JLabel("");
 		dados4.setVerticalAlignment(SwingConstants.BOTTOM);
-		dados4.setFont(new Font("Arial", Font.BOLD, 12));
+		dados4.setFont(new Font("Arial", Font.BOLD, 15));
 		dados4.setBounds(919, 440, 123, 25);
 		contentPane.add(dados4);
 		
 		JLabel dados5 = new JLabel("");
 		dados5.setVerticalAlignment(SwingConstants.BOTTOM);
-		dados5.setFont(new Font("Arial", Font.BOLD, 12));
+		dados5.setFont(new Font("Arial", Font.BOLD, 15));
 		dados5.setBounds(919, 471, 123, 24);
 		contentPane.add(dados5);
 		
@@ -461,9 +471,25 @@ public class InterfaceMain extends JFrame {
 						case "J":
 							popPilha(pilha, regs, 9, "J", regJ);
 							break;
+						// POP NA MEMÓRIA
+						case "#6":
+							popMemoria(pilha, dados, 0, dados1);
+							break;
+						case "#7":
+							popMemoria(pilha, dados, 1, dados2);
+							break;
+						case "#8":
+							popMemoria(pilha, dados, 2, dados3);
+							break;
+						case "#9":
+							popMemoria(pilha, dados, 3, dados4);
+							break;
+						case "#10":
+							popMemoria(pilha, dados, 4, dados5);
+							break;
 		
 						default:
-							JOptionPane.showMessageDialog(InterfaceMain.this, "Registrador não encontrado!");
+							JOptionPane.showMessageDialog(InterfaceMain.this, "Registrador ou Posição de Memória não encontrado!");
 							break;
 						}
 					} else {
@@ -502,9 +528,25 @@ public class InterfaceMain extends JFrame {
 					case "J":
 						pushPilha(pilha, regs, 9);
 						break;
-
+					// PUSH NA MEMÓRIA 
+					case "#6":
+						pushMemoria(pilha, dados, 0);
+						break;
+					case "#7":
+						pushMemoria(pilha, dados, 1);
+						break;
+					case "#8":
+						pushMemoria(pilha, dados, 2);
+						break;
+					case "#9":
+						pushMemoria(pilha, dados, 3);
+						break;
+					case "#10":
+						pushMemoria(pilha, dados, 4);
+						break;
+						
 					default:
-						JOptionPane.showMessageDialog(InterfaceMain.this, "Registrador não encontrado!");
+						JOptionPane.showMessageDialog(InterfaceMain.this, "Registrador ou Posição de Memória não encontrado!");
 						break;
 					}
 					break;
@@ -841,12 +883,29 @@ public class InterfaceMain extends JFrame {
 		panel_9.setBounds(836, 159, 221, 342);
 		contentPane.add(panel_9);
 		
-		JButton button = new JButton("Executar");
-		button.setFont(new Font("Tahoma", Font.BOLD, 12));
-		button.setBackground(SystemColor.controlHighlight);
-		button.setBounds(0, 0, 94, 29);
-		contentPane.add(button);
-		
+	}
+	
+	static void popMemoria(Integer[] pilha, Integer[] dados_memoria, int indice, JLabel label) {
+		Integer[] operandos = operandosPilha(pilha);
+		Integer topo = operandos[0];
+		if(topo != null) {
+			dados_memoria[indice] = pilha[topo];
+			pilha[topo] = null;
+			label.setText(""+dados_memoria[indice]);
+		} else {
+			dados_memoria[indice] = pilha[0];
+			pilha[0] = null;
+			label.setText(""+dados_memoria[indice]);
+		}
+	}
+	
+	static void pushMemoria(Integer[] pilha, Integer[] dados_memoria, int index){
+		for (int i = 0; i < pilha.length; i++) {
+			if (pilha[i] == null) {
+				pilha[i] = dados_memoria[index];
+				break;
+			}
+		}
 	}
 	
 	static void popPilha(Integer[] pilha, Integer[] regs, int indice, String letraReg, JLabel label) {
@@ -860,6 +919,15 @@ public class InterfaceMain extends JFrame {
 			regs[indice] = pilha[0];
 			pilha[0] = null;
 			label.setText(letraReg + " = " + regs[indice]);
+		}
+	}
+	
+	static void pushPilha(Integer[] pilha, Integer[] regs, int index){
+		for (int i = 0; i < pilha.length; i++) {
+			if (pilha[i] == null) {
+				pilha[i] = regs[index];
+				break;
+			}
 		}
 	}
 	
@@ -879,15 +947,6 @@ public class InterfaceMain extends JFrame {
 			operandos[1] = (index - 2);	
 		} 
 		return operandos;
-	}
-	
-	static void pushPilha(Integer[] pilha, Integer[] regs, int index){
-		for (int i = 0; i < pilha.length; i++) {
-			if (pilha[i] == null) {
-				pilha[i] = regs[index];
-				break;
-			}
-		}
 	}
 	
 	static void imprimirPilha(Integer[] registradores, JLabel[] labels){
